@@ -8,6 +8,9 @@
   let agreed = false;
   let favColor = ["red"];
   let singleFavColor = "red";
+  let usernameInput;
+  let someDiv;
+  let customInput;
 
   $: console.log(agreed);
   $: console.log(val);
@@ -19,13 +22,21 @@
   const setValue = (event) => {
     val = event.target.value;
   };
+
+  const saveData = () => {
+    console.log(usernameInput.value);
+    console.log(usernameInput);
+    console.dir(someDiv);
+    console.log(customInput);
+    customInput.empty();
+  };
 </script>
 
 <input style="background-color: green;" type="text" value={val} />
 
 <input style="background-color: yellow;" type="text" bind:value={val} />
 
-<CustomInput bind:val />
+<CustomInput bind:val bind:this={customInput} />
 <Toggle bind:chosenOption={selectedOpt} />
 <input type="number" bind:value={price} />
 
@@ -52,3 +63,10 @@
   <option value="red">Red</option>
   <option value="blue">Blue</option>
 </select>
+
+<hr />
+
+<input type="text" id="username" bind:this={usernameInput} />
+<button on:click={saveData}>Save</button>
+
+<div bind:this={someDiv}>just a div</div>
