@@ -1,5 +1,5 @@
 <script>
-  //start 89
+  //end section 8
   import CustomInput from "./CustomInput.svelte";
   import Toggle from "./Toggle.svelte";
   import { isValidEmail } from "./validation";
