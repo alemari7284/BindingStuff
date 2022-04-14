@@ -2,6 +2,7 @@
   //start 89
   import CustomInput from "./CustomInput.svelte";
   import Toggle from "./Toggle.svelte";
+  import { isValidEmail } from "./validation";
 
   let val = "Alex";
   let price = 0;
@@ -12,6 +13,10 @@
   let usernameInput;
   let someDiv;
   let customInput;
+  let enteredEmail = "";
+  let formIsValid = false;
+
+  $: formIsValid = enteredEmail.includes("@") ? true : false;
 
   $: console.log(agreed);
   $: console.log(val);
@@ -71,3 +76,20 @@
 <button on:click={saveData}>Save</button>
 
 <div bind:this={someDiv}>just a div</div>
+
+<hr />
+
+<form on:submit|preventDefault>
+  <input
+    type="email"
+    bind:value={enteredEmail}
+    class={isValidEmail(enteredEmail) ? "" : "invalid"}
+  />
+  <button type="submit" disabled={!formIsValid}>Save</button>
+</form>
+
+<style>
+  .invalid {
+    border: 3px solid red;
+  }
+</style>
